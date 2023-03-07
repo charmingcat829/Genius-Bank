@@ -42,7 +42,7 @@ class WithdrawController extends Controller
         $request->validate([
             'amount' => 'required|gt:0',
         ]);
-
+        
         $user = auth()->user();
 
         if($user->bank_plan_id === null){
@@ -71,7 +71,7 @@ class WithdrawController extends Controller
 
         $withdrawcharge = WithdrawMethod::whereMethod($request->methods)->first();
         $charge = $withdrawcharge->fixed;
-
+        
         $messagefee = (($withdrawcharge->percentage / 100) * $request->amount) + $charge;
         $messagefinal = $request->amount - $messagefee;
 
@@ -90,6 +90,7 @@ class WithdrawController extends Controller
             return redirect()->back()->with('unsuccess','Insufficient Balance.');
         }
 
+        
         $finalamount = number_format((float)$finalamount,2,'.','');
 
         $user->balance = $user->balance - $amount;
@@ -118,7 +119,6 @@ class WithdrawController extends Controller
         $trans->save();
 
         return redirect()->back()->with('success','Withdraw Request Amount : '.$request->amount.' Fee : '.$messagefee.' = '.$messagefinal.' ('.$currency->name.') Sent Successfully.');
-
     }
 
     public function details(Request $request, $id){

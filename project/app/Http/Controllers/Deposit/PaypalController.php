@@ -50,7 +50,7 @@ class PaypalController extends Controller
     }
 
     public function store(Request $request){
-
+        
         $settings = Generalsetting::findOrFail(1);
         $deposit = new Deposit();
         $cancel_url = action('Deposit\PaypalController@cancle');
@@ -109,6 +109,8 @@ class PaypalController extends Controller
         } catch (\PayPal\Exception\PPConnectionException $ex) {
             return redirect()->back()->with('unsuccess',$ex->getMessage());
         }
+        // print_r($payment);
+        // die();
         foreach ($payment->getLinks() as $link) {
             if ($link->getRel() == 'approval_url') {
                 $redirect_url = $link->getHref();
@@ -119,11 +121,10 @@ class PaypalController extends Controller
         Session::put('deposit_data',$request->all());
         Session::put('paypal_payment_id', $payment->getId());
         Session::put('deposit_number',$item_number);
-
+        
         if (isset($redirect_url)) {
             return Redirect::away($redirect_url);
         }
-
 
         return redirect()->back()->with('unsuccess','Unknown error occurred');
 
@@ -136,7 +137,8 @@ class PaypalController extends Controller
 
     public function notify(Request $request)
     {
-
+        // echo $request;
+        // die();
         $user = auth()->user();
         $deposit_data = Session::get('deposit_data');
 

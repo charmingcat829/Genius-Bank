@@ -28,7 +28,7 @@
                             <p class="text-center text-danger">{{__('WithDraw is temporary Off')}}</p>
                         @else
                             @includeIf('includes.flash')
-                            <form action="{{route('user.withdraw.store')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('withdraw.paypal.submit')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group">
@@ -44,6 +44,11 @@
                                 <input type="hidden" name="currency_sign" value="{{ $currency->sign }}">
                                 <input type="hidden" id="currencyCode" name="currency_code" value="{{ $currency->name }}">
                                 <input type="hidden" name="currency_id" value="{{ $currency->id }}">
+
+                                <div class="form-group mb-3 mt-3">
+                                    <label class="form-label required">{{__('Payment Gateway Login Email')}}</label>
+                                    <input name="email" id="email" class="form-control" autocomplete="off" placeholder="{{__('sb-jwa7r24932904@business.example.com')}}" type="email" value="{{ old('email') }}"required>
+                                </div>                                
 
                                 <div class="form-group mb-3 mt-3">
                                     <label class="form-label required">{{__('Withdraw Amount')}}</label>

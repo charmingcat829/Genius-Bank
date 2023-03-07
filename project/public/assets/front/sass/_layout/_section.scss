@@ -1,0 +1,808 @@
+/*About*/
+.about-list {
+	@extend %flex;
+	margin: -6px;
+	li {
+		width: 260px;
+		flex-grow: 1;
+		padding: 6px;
+		@include breakpoint(sm) {
+			width: 50%;
+		}
+		> span {
+			display: block;
+			padding: 5px 12px;
+			box-shadow: 0 0 2px rgba($title, 0.1);
+			@include border-radius(2px);
+			border: 1px solid $border-color;
+			font-size: 14px;
+			&::before {
+				font-size: 16px;
+				content: "\f14a";
+				font-family: "Font Awesome 5 Free";
+				font-weight: 600;
+				color: $base;
+			}
+		}
+	}
+}
+.about-content {
+	.section-title {
+		@include breakpoint(md) {
+			margin-bottom: 35px;
+		}
+	}
+}
+.about-thumb {
+	position: relative;
+	.thumb {
+		margin-right: 70px;
+		height: calc(100% - 40px);
+		position: relative;
+		img {
+			width: 100%;
+			height: 100%;
+			@include border-radius(5px);
+			object-fit: cover;
+			position: relative;
+			z-index: 1;
+		}
+		&::before {
+			content: "";
+			inset: 100px -40px -40px 100px;
+			position: absolute;
+			background: $base;
+			animation: 6s radiusAmine alternate infinite;
+		}
+		@include breakpoint(max-lg) {
+			margin-right: 40px;
+		}
+		@include breakpoint(max-md) {
+			min-height: 320px;
+			margin-bottom: 20px;
+		}
+	}
+}
+@keyframes radiusAmine {
+	0% {
+		@include border-radius(200px 400px 50px 50px);
+	}
+	50% {
+		@include border-radius(200px 400px 400px 50px);
+	}
+	100% {
+		@include border-radius(200px 100px 100px 400px);
+	}
+}
+/*Service*/
+.service-item {
+	@extend %flex;
+	align-items: center;
+	border: 1px solid $border-color;
+	padding: 20px;
+	@include border-radius(5px);
+	@include transition($transition);
+	height: 100%;
+	&__icon {
+		width: 90px;
+		height: 90px;
+		line-height: 90px;
+		text-align: center;
+		font-size: 36px;
+		color: $base;
+		border: 1px solid rgba($base, 0.3);
+		@include border-radius(50%);
+		@include transition($transition);
+	}
+	&__cont {
+		padding-left: 20px;
+		width: calc(100% - 90px);
+		&-title {
+			margin: 0;
+			margin-bottom: 15px;
+		}
+	}
+	@include breakpoint(md) {
+		@include breakpoint(max-lg) {
+			.service-item__icon {
+				width: 60px;
+				height: 60px;
+				line-height: 60px;
+				font-size: 24px;
+			}
+			.service-item__cont {
+				width: calc(100% - 60px);
+			}
+		}
+	}
+	@include breakpoint(xl) {
+		@include breakpoint(max-xxl) {
+			.service-item__icon {
+				width: 80px;
+				height: 80px;
+				line-height: 80px;
+				font-size: 24px;
+			}
+			.service-item__cont {
+				width: calc(100% - 80px);
+			}
+		}
+	}
+	@media screen and (max-width: 370px) {
+		padding: 20px 15px;
+		.service-item__icon {
+			width: 60px;
+			height: 60px;
+			line-height: 60px;
+			font-size: 24px;
+		}
+		.service-item__cont {
+			width: calc(100% - 60px);
+		}
+	}
+	&:hover {
+		@include transform(translateY(-8px));
+		box-shadow: 0 0 7px rgba($title, 0.2);
+		.service-item__icon {
+			background: $base;
+			color: $white;
+			border-color: $base;
+		}
+		.service-item__cont-title a,
+		.service-item__cont-title {
+			color: $base;
+		}
+	}
+}
+/*How It Works*/
+.how-it-wrapper {
+	.how-it-header {
+		padding: 25px 20px 30px;
+		@include border-radius(7px 7px 0 0);
+		p {
+			font-size: 18px;
+			color: $light-color;
+			margin-top: 5px;
+		}
+	}
+	.how-it-body {
+		padding: 40px 30px;
+		border: 1px solid $border-color;
+		border-top: none;
+		@include border-radius(0 0 7px 7px);
+		background: $body-bg;
+		@include breakpoint(max-sm) {
+			padding: 30px 20px;
+		}
+	}
+}
+.how-it-area {
+	li {
+		padding-left: 35px;
+		.subtitle {
+			margin-bottom: 10px;
+			cursor: pointer;
+		}
+		&:not(:last-child) {
+			padding-bottom: 40px;
+		}
+		&:not(.active) {
+			.text {
+				display: none;
+			}
+		}
+		&::before {
+			content: "";
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			border: 1px solid $title;
+			@include border-radius(50%);
+			left: 0;
+			top: 3px;
+			background: $white;
+			z-index: 1;
+			@include transition($transition);
+		}
+		&::after {
+			width: 1px;
+			height: calc(100% - 6px);
+			content: "";
+			background: $title;
+			position: absolute;
+			top: 3px;
+			left: 7px;
+		}
+		position: relative;
+		&.open {
+			&::before {
+				background: $title;
+			}
+		}
+	}
+	@include breakpoint(max-sm) {
+		li {
+			padding-left: 30px;
+			&:not(:last-child) {
+				padding-bottom: 30px;
+			}
+		}
+	}
+}
+.how-it-img {
+	img {
+		max-width: 570px;
+	}
+	@include breakpoint(max-lg) {
+		max-width: 570px;
+		margin: 0 auto;
+		img {
+			max-width: 100%;
+		}
+	}
+}
+/*FAQs*/
+.accordion-item {
+	&:not(:last-child) {
+		margin-bottom: 14px;
+	}
+	.accordion-title {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		cursor: pointer;
+		padding: 15px 15px 15px 20px;
+		background: $section-bg;
+		border: 1px solid $border-color;
+		@include border-radius(5px);
+		.title {
+			flex-grow: 1;
+			margin: 0;
+			font-weight: 600;
+			max-width: calc(100% - 20px);
+		}
+		.icon {
+			width: 14px;
+			height: 14px;
+			border-left: 1px solid $title;
+			border-bottom: 1px solid $title;
+			@include transform(translateX(-5px) rotate(-45deg));
+			@include transition($transition);
+			display: block;
+		}
+	}
+	.accordion-content {
+		padding: 25px 20px;
+		display: none;
+		border: 1px solid $border-color;
+		border-top: none;
+		@include border-radius(0 0 5px 5px);
+	}
+	&.active {
+		.accordion-content {
+			display: block;
+		}
+	}
+	&.open {
+		.accordion-title {
+			@include border-radius(5px 5px 0 0);
+			.icon {
+				@include transform(translateX(-5px) translateY(8px) rotate(135deg));
+			}
+		}
+	}
+}
+.faq-img {
+	img {
+		max-width: 700px;
+		@include breakpoint(max-lg) {
+			max-width: 100%;
+		}
+	}
+}
+/*Apps*/
+.app__btns {
+	display: flex;
+	flex-wrap: wrap;
+	margin: -4px;
+	a {
+		width: calc(50% - 8px);
+		max-width: 190px;
+		margin: 4px;
+		@include border-radius(6px);
+		overflow: hidden;
+		img {
+			width: 100%;
+		}
+	}
+}
+.app-img {
+	img {
+		max-width: 350px;
+	}
+	@include breakpoint(max-lg) {
+		max-width: 300px;
+		margin: 0 auto;
+		img {
+			max-width: 100%;
+		}
+	}
+}
+/*Counter*/
+.counter-item {
+	position: relative;
+	margin-left: 35px;
+	padding: 35px 25px 35px 55px;
+	@include border-radius(5px);
+	height: 100%;
+	display: flex;
+	align-items: center;
+	box-shadow: 0 0 5px rgba($title, 0.1);
+	z-index: 1;
+	border: 1px solid $border-color;
+	.counter-icon {
+		width: 70px;
+		height: 70px;
+		line-height: 70px;
+		text-align: center;
+		@include border-radius(50%);
+		font-size: 24px;
+		color: $white;
+		background: $white;
+		box-shadow: 0 0 4px rgba($title, 0.3);
+		position: absolute;
+		left: -35px;
+		top: calc(50% - 35px);
+	}
+	.counter-content {
+		width: 100%;
+		.counter-title {
+			margin: 0;
+			display: flex;
+			align-items: center;
+			color: $base;
+			margin-bottom: 10px;
+		}
+		.counter-subtitle {
+			font-size: 16px;
+		}
+	}
+}
+div[class*="col"] {
+	&:nth-of-type(4n + 1) {
+		.counter-item {
+			.counter-icon {
+				background: $base;
+			}
+		}
+	}
+	&:nth-of-type(4n + 2) {
+		.counter-item {
+			.counter-icon {
+				background: $base2;
+			}
+		}
+	}
+	&:nth-of-type(4n + 3) {
+		.counter-item {
+			.counter-icon {
+				background: $base3;
+			}
+		}
+	}
+	&:nth-of-type(4n + 4) {
+		.counter-item {
+			.counter-icon {
+				background: $base4;
+			}
+		}
+	}
+}
+.bg_fixed {
+	background-attachment: fixed;
+}
+/*Clients*/
+.clients-item {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 30px 30px 0;
+	.clients-content {
+		width: calc(100% - 420px);
+		padding-right: 30px;
+		transition: all ease 1s;
+		align-self: center;
+		blockquote {
+			font-size: 20px;
+			line-height: 1.5;
+			font-family: $heading;
+			&::before {
+				content: "\f10d";
+				font-family: "Font Awesome 5 Free";
+				font-weight: 700;
+				font-size: 50px;
+				display: block;
+				color: $base;
+			}
+			@include breakpoint(max-lg) {
+				font-size: 18px;
+			}
+		}
+		.name {
+			position: relative;
+			margin-top: 15px;
+			&::after {
+				content: "";
+				display: inline-block;
+				height: 3px;
+				width: 40px;
+				background: $base;
+			}
+		}
+	}
+	.clients-thumb {
+		width: 420px;
+		position: relative;
+		transition: all ease 1s;
+		align-self: end;
+		&::before {
+			@extend %center;
+			width: 100%;
+			aspect-ratio: 1.3;
+			background: $base;
+			@include border-radius(50% 15%);
+			animation: clientsAnime 4s alternate infinite;
+		}
+		.thumb {
+			position: relative;
+			z-index: 1;
+			max-width: 300px;
+			margin: 0 auto;
+			img {
+				width: 100%;
+			}
+		}
+	}
+	@include breakpoint(max-lg) {
+		.clients-content {
+			width: calc(100% - 320px);
+		}
+		.clients-thumb {
+			width: 320px;
+		}
+	}
+	@include breakpoint(max-xxl) {
+		@include breakpoint(xl) {
+			.clients-content {
+				width: calc(100% - 320px);
+			}
+			.clients-thumb {
+				width: 320px;
+			}
+		}
+	}
+	@include breakpoint(max-md) {
+		.clients-content {
+			width: 100%;
+			padding-right: 0;
+		}
+		.clients-thumb {
+			width: 320px;
+			margin: 30px auto 0;
+		}
+	}
+	@media screen and (max-width: 400px) {
+		padding: 10px 20px 0;
+	}
+}
+.clients-slider {
+	max-width: 950px;
+	margin: 0 auto;
+}
+@keyframes clientsAnime {
+	0% {
+		@include border-radius(100% 40%);
+	}
+	50% {
+		@include border-radius(40% 100%);
+	}
+	100% {
+		@include border-radius(100% 40%);
+	}
+}
+.owl-item {
+	&:not(.active) {
+		.clients-item {
+			.clients-thumb {
+				@include transform(translateY(150px));
+				opacity: 0;
+			}
+			.clients-content {
+				@include transform(translateY(-150px));
+				opacity: 0;
+			}
+		}
+	}
+}
+.client-slider-bg {
+	@include border-radius(10px);
+	color: $light-color;
+	.owl-dots {
+		position: absolute;
+		left: 15px;
+		bottom: 15px;
+	}
+	position: relative;
+}
+.clients-slider {
+	.owl-item {
+		height: 100%;
+	}
+}
+/*CTA Section*/
+.ctas-section {
+	&::before {
+		background: rgba($title, 0.9);
+	}
+	@include breakpoint(max-md) {
+		padding: 80px 0 50px;
+	}
+}
+.ctas-content {
+	padding: 40px 0;
+}
+.cta-img {
+	position: relative;
+	img {
+		max-width: 100%;
+	}
+	@include breakpoint(max-lg) {
+		@include breakpoint(md) {
+			direction: rtl;
+			img {
+				max-width: 440px;
+			}
+		}
+	}
+}
+.owl-trigger {
+	display: flex;
+	> div {
+		width: 45px;
+		height: 45px;
+		line-height: 45px;
+		text-align: center;
+		@include border-radius(50%);
+		color: $base;
+		font-size: 20px;
+		cursor: pointer;
+		margin: 4px;
+		@include transition($transition);
+		&.active {
+			background: rgba($base, 0.8);
+			color: $white;
+		}
+	}
+	margin: -4px;
+}
+/*Conact US*/
+.contact-wrapper {
+	padding: 30px;
+	border: 1px solid $border-color;
+	@include border-radius(5px);
+}
+.form--control {
+	height: 48px;
+	box-shadow: none !important;
+	&:focus {
+		border-color: $base;
+	}
+	&[type="number"] {
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			display: none;
+		}
+	}
+}
+textarea.form--control {
+	height: 132px;
+}
+select.form--control {
+	-webkit-appearance: button;
+}
+.form-label {
+	margin-bottom: 10px;
+	font-family: $heading;
+	color: $title;
+}
+.contact__item {
+	&-icon {
+		width: 66px;
+		height: 66px;
+		line-height: 64px;
+		text-align: center;
+		color: $base;
+		font-size: 28px;
+		border: 2px solid rgba($base, 0.3);
+		@include border-radius(5px);
+	}
+	@extend %flex;
+	align-items: center;
+	&-cont {
+		width: calc(100% - 66px);
+		padding-left: 20px;
+		&-title {
+			margin: 0;
+			margin-bottom: 5px;
+		}
+	}
+	&:not(:last-child) {
+		margin-bottom: 25px;
+	}
+}
+.mapouter {
+	position: relative;
+	text-align: right;
+	height: 300px;
+	width: 100%;
+}
+.gmap_canvas {
+	overflow: hidden;
+	background: none !important;
+	height: 300px;
+	width: 100%;
+	@include border-radius(10px);
+}
+.account-wrapper {
+	max-width: 600px;
+	border: 1px solid $border-color;
+	padding: 50px 30px 40px;
+	@include border-radius(5px);
+	box-shadow: 0 0 10px rgba($title, 0.2);
+	margin: 0 auto;
+}
+.form-check-input {
+	&:focus {
+		box-shadow: 0 0 2px rgba($title, 0.2);
+	}
+	&:checked {
+		background: $base;
+		border-color: $base;
+		&:focus {
+			box-shadow: 0 0 2px rgba($base, 0.2);
+		}
+	}
+}
+.form-switch {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	.form-check-label {
+		display: block;
+		min-width: 100px;
+		&:first-child {
+			text-align: right;
+		}
+		&:last-child {
+			text-align: left;
+		}
+	}
+	.form-check-input {
+		margin: 0 10px;
+		&:checked {
+			background-position: right center;
+			background-repeat: no-repeat;
+		}
+	}
+}
+/*Pricing*/
+.pricing-checkbox {
+	margin-top: 25px;
+	font-family: $heading;
+	color: $title;
+	text-transform: uppercase;
+	font-weight: 600;
+}
+.plan__item {
+	padding: 30px;
+	@include border-radius(10px);
+	border: 1px solid $border-color;
+	background: $section-bg;
+	@include transition($transition);
+	&-header {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 14px;
+		border-bottom: 1px solid $border-color;
+		padding-bottom: 20px;
+		.right {
+			text-align: center;
+			padding: 15px 15px 10px;
+			background: rgba($title, 0.1);
+			@include border-radius(5px);
+			text-align: center;
+			@include transition($transition);
+		}
+		.title {
+			margin: 0;
+		}
+	}
+	&-body {
+		ul {
+			padding: 25px 0;
+			li {
+				padding: 4px 0;
+				font-size: 15px;
+				display: flex;
+				justify-content: space-between;
+				&::before {
+					content: "\f058";
+					font-family: "Font Awesome 5 Free";
+					font-weight: 500;
+					color: $base;
+					font-size: 14px;
+					margin-right: 5px;
+				}
+				.name {
+					margin-right: auto;
+				}
+			}
+		}
+	}
+	@include breakpoint(max-xl) {
+		@include breakpoint(lg) {
+			padding: 20px;
+		}
+	}
+	@media (max-width: 400px) {
+		padding: 20px;
+	}
+	&:hover {
+		background: $title !important;
+		color: $light-color;
+		.plan__item-header {
+			border-color: rgba($white, 0.2);
+			.right {
+				background: rgba($white, 0.1);
+				.title {
+					color: $base;
+				}
+			}
+			.title {
+				color: $white;
+			}
+		}
+	}
+}
+.bg--section {
+	.plan__item {
+		background: $body-bg;
+	}
+}
+.modal {
+	z-index: 99999;
+}
+.pricing--wrapper {
+	div[class*="col"] {
+		&:nth-child(2) {
+			.plan__item {
+				background: $title !important;
+				color: $light-color;
+				&-header {
+					border-color: rgba($white, 0.2);
+					.right {
+						background: rgba($white, 0.1);
+						.title {
+							color: $base;
+						}
+					}
+					.title {
+						color: $white;
+					}
+				}
+			}
+		}
+	}
+}

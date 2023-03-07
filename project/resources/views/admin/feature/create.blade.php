@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <div class="card">
   <div class="d-sm-flex align-items-center justify-content-between">
   <h5 class=" mb-0 text-gray-800 pl-3">{{ __('Add New Feature') }} <a class="btn btn-primary btn-rounded btn-sm" href="{{route('admin.feature.index')}}"><i class="fas fa-arrow-left"></i> {{ __('Back') }}</a></h5>

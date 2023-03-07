@@ -12,6 +12,7 @@ use App\Http\Controllers\User\BeneficiaryController;
 use App\Http\Controllers\Deposit\FlutterwaveController;
 use App\Http\Controllers\Deposit\ManualController;
 use App\Http\Controllers\Deposit\PaystackController;
+use App\Http\Controllers\Withdraw\WithdrawPaypalController;
 use App\Http\Controllers\User\ForgotController;
 use App\Http\Controllers\User\KYCController;
 use App\Http\Controllers\User\MessageController;
@@ -163,6 +164,10 @@ Route::prefix('user')->group(function() {
       Route::get('/paypal/deposit/notify', [PaypalController::class,'notify'])->name('deposit.paypal.notify');
       Route::get('/paypal/deposit/cancle', [PaypalController::class,'cancle'])->name('deposit.paypal.cancle');
 
+      Route::post('withdraw/paypal-submit', [WithdrawPaypalController::class,'store'])->name('withdraw.paypal.submit');
+      Route::get('/paypal/withdraw/notify', [WithdrawPaypalController::class,'notify'])->name('withdraw.paypal.notify');
+      Route::get('/paypal/withdraw/cancle', [WithdrawPaypalController::class,'cancle'])->name('withdraw.paypal.cancle');      
+
       Route::post('/instamojo-submit',[InstamojoController::class,'store'])->name('deposit.instamojo.submit');
       Route::get('/instamojo-notify',[InstamojoController::class,'notify'])->name('deposit.instamojo.notify');
 
@@ -225,6 +230,10 @@ Route::prefix('user')->group(function() {
 
       Route::get('/change-password', [UserController::class,'changePasswordForm'])->name('user.change.password.form');
       Route::post('/change-password', [UserController::class,'changePassword'])->name('user.change.password');
+      // Route::get('create-transaction', [PayPalController::class, 'createTransaction'])->name('createTransaction');
+      // Route::get('process-transaction', [PayPalController::class, 'processTransaction'])->name('processTransaction');
+      // Route::get('success-transaction', [PayPalController::class, 'successTransaction'])->name('successTransaction');
+      // Route::get('cancel-transaction', [PayPalController::class, 'cancelTransaction'])->name('cancelTransaction');
     });
 
 

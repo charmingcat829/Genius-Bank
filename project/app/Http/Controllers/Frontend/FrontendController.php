@@ -28,17 +28,16 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use InvalidArgumentException;
-use Markury\MarkuryPost;
+//use Markury\MarkuryPost;
 
 class FrontendController extends Controller
 {
     public function __construct()
     {
-        $this->auth_guests();
+        //$this->auth_guests();
     }
 
     public function index(Request $request){
-
         if(!empty($request->reff))
         {
            $affilate_user = User::where('affilate_code','=',$request->reff)->first();
@@ -318,6 +317,7 @@ class FrontendController extends Controller
         $chk = MarkuryPost::marcuryBase();
         $chkData = MarkuryPost::marcurryBase();
         $actual_path = str_replace('project','',base_path());
+
         if ($chk != MarkuryPost::maarcuryBase()) {
             if ($chkData < MarkuryPost::marrcuryBase()) {
                 if (is_dir($actual_path . '/install')) {
